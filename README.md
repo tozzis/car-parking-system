@@ -60,16 +60,21 @@ $ npm run test:cov
 
 ## Project Structure
 ```
-├── src                       # The actual source for the app goes here.
-|   ├── config                # Config environment variables
-|   ├── database              # Module connect db
-|   ├── app.module.ts         # Main app module
+├── src                         # The actual source for the app goes here
+|   ├── shared                  # Shared modules, config, constants, etc
+|       ├── config              # Config values
+|       ├── constants           # Constant values
+|   ├── database                # Database configuration
+|       ├── entities            # TypeORM entities
+|       ├── database.module.ts  # Database module
+|   ├── modules                 # Modules of the application
+|   ├── app.module.ts           # Main app module
 |   └── main.ts
-├── .editorconfig             # Editor configuration file
-├── .gitignore                # Folder and files ignored by git.
-├── .nvmrc                    # Node Version Manager
-├── .prettierrc               # Role for prettierrc
-├── package-lock.json         # Contains exact versions of NPM dependencies in package.json.
-├── package.json              # NPM dependencies.
-├── tsconfig.json             # Config settings for compiling server code written in TypeScript
+├── .editorconfig               # Editor configuration file
+├── .gitignore                  # Folder and files ignored by git
+├── .nvmrc                      # Node Version Manager
+├── .prettierrc                 # Role for prettierrc
+├── package-lock.json           # Contains exact versions of NPM dependencies in package.json
+├── package.json                # NPM dependencies
+├── tsconfig.json               # Config settings for compiling server code written in TypeScript
 ```

@@ -14,7 +14,7 @@ export class SystemController {
 
   @Get('health')
   @HealthCheck()
-  check() {
+  healthCheck() {
     return this.health.check([() => this.db.pingCheck('database')]);
   }
 }

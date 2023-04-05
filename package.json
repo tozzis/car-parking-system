@@ -2,9 +2,9 @@
   "name": "car-parking-system",
   "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "tozzis",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "@tozzis",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -64,7 +64,10 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "./",
+    "modulePaths": [
+      "<rootDir>"
+    ],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"

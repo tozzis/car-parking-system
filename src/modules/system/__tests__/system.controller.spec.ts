@@ -4,7 +4,7 @@ import {
   TerminusModule,
 } from '@nestjs/terminus';
 import { Test, TestingModule } from '@nestjs/testing';
-import { SystemController } from './system.controller';
+import { SystemController } from '../system.controller';
 
 describe('SystemController', () => {
   let controller: SystemController;
@@ -30,7 +30,7 @@ describe('SystemController', () => {
       };
       jest.spyOn(health, 'check').mockImplementation(async () => result);
 
-      expect(await controller.check()).toBe(result);
+      expect(await controller.healthCheck()).toBe(result);
     });
   });
 });

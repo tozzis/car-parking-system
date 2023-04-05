@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TerminusModule } from '@nestjs/terminus';
 import { DatabaseModule } from './database/database.module';
-import { SystemController } from './system/system.controller';
+import { SystemModule } from './modules/system/system.module';
+import { ParkingLotModule } from './modules/parking-lot/parking-lot.module';
 
 @Module({
-  imports: [TerminusModule, DatabaseModule],
-  controllers: [SystemController],
-  providers: [],
+  imports: [DatabaseModule, SystemModule, ParkingLotModule],
 })
 export class AppModule {}

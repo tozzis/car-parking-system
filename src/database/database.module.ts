@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { join } from 'path';
-import config from 'src/config';
+import config from 'src/shared/config';
 
 const options: TypeOrmModuleOptions = {
   type: 'postgres',
@@ -16,7 +16,5 @@ const options: TypeOrmModuleOptions = {
 
 @Module({
   imports: [TypeOrmModule.forRoot(options)],
-  controllers: [],
-  providers: [],
 })
 export class DatabaseModule {}
