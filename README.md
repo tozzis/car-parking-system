@@ -75,6 +75,40 @@ To access the Swagger UI, follow these steps:
 - Start the server by running `npm start`
 - Open a web browser and go to `http://localhost:<PORT>/api/docs`
 
+## Entities
+#### `ParkingLot`
+The parking-lot entity represents a parking slot in the parking lot. It has the following properties:
+    
+- `id`: a primary key identifier for the parking slot.
+- `slotNumber`: the number of the parking slot, which should be unique.
+- `isOccupied`: a flag indicating whether the slot is currently occupied by a vehicle or not.
+- `isAvailable`: a flag indicating whether the slot is available for parking or not.
+- `size`: the size of the parking slot, which can be one of the values defined in the `CarSize` enum.
+- `createdAt`: the date and time when the parking slot was created.
+- `updatedAt`: the date and time when the parking slot was last updated.
+
+
+#### `Car`
+The car entity represents car info in a parking lot. It has the following properties:
+
+- `id`: a primary key identifier of the car.
+- `plateNumber`: the license plate number of the car.
+- `size`: the size of the car (small, medium, large).
+- `createdAt`: the date and time when the car was created.
+- `updatedAt`: the date and time when the parking slot was last updated.
+
+#### `Ticket`
+The ticket entity represents a record of a car's parking session in a specific parking lot. It has the following properties:
+
+- `id`: a primary key identifier of the ticket.
+- `entryTime`: the date and time the car entered the parking lot and the parking session started.
+- `exitTime`: the date and time the car exited the parking lot and the parking session ended (nullable, as the car might still be parked).
+- `isClosed`: a boolean flag indicating whether the parking session has ended or not.
+- `car`: a many-to-one relationship with the `Car` entity, representing the car that is parked.
+- `parkingLot`: a many-to-one relationship with the `ParkingLot` entity, representing the parking lot where the car is parked.
+- `createdAt`: the date and time when the ticket was created.
+- `updatedAt`: the date and time when the ticket was last updated.
+
 ## Project Structure
 
 ```
