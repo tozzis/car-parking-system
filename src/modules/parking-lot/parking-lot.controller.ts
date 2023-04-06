@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpStatus,
-  Post,
-  Put,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
 import { CarSize } from 'src/shared/constants/car-size.enum';
 import { CreateParkingLotDto } from './dto/create-parking-lot.dto';
 import { LeaveParkingDto } from './dto/leave-parking.dto';
@@ -47,11 +39,7 @@ export class ParkingLotController {
   @Post('leave')
   async leaveSlot(@Body() leaveParkingDto: LeaveParkingDto) {
     const { ticketId } = leaveParkingDto;
-    await this.parkingLotService.leaveParkingLotByTicketId(ticketId);
-    return {
-      status: HttpStatus.OK,
-      description: 'The parking slot has been successfully left',
-    };
+    return this.parkingLotService.leaveParkingLotByTicketId(ticketId);
   }
 
   // 04-get_status_of_parking_lot

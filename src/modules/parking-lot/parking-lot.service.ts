@@ -11,11 +11,14 @@ import { ParkingLot } from 'src/database/entities/parking-lot.entity';
 import { CarSize } from 'src/shared/constants/car-size.enum';
 import {
   CarSizeStatus,
+  IParkingLotService,
+  LeaveParkingResponse,
   ParkingLotStatusResponse,
 } from './parking-lot.interface';
+import { calculateDateDifferenceInMinutes } from 'src/shared/utils';
 
 @Injectable()
-export class ParkingLotService {
+export class ParkingLotService implements IParkingLotService {
   constructor(
     @InjectRepository(Car)
     private carRepository: Repository<Car>,
@@ -102,7 +105,7 @@ export class ParkingLotService {
       .getOne();
 
     if (!nearestAvailableSlot) {
-      throw new Error(
+      throw new NotFoundException(
         `No available parking slot found for car size ${car.size}`,
       );
     }
@@ -122,7 +125,9 @@ export class ParkingLotService {
   }
 
   // 03-leave_slot
-  async leaveParkingLotByTicketId(ticketId: number): Promise<void> {
+  async leaveParkingLotByTicketId(
+    ticketId: number,
+  ): Promise<LeaveParkingResponse> {
     const ticket = await this.ticketRepository.findOne({
       where: { id: ticketId, isClosed: false },
       relations: ['parkingLot'],
@@ -140,6 +145,14 @@ export class ParkingLotService {
       this.ticketRepository.save(ticket),
       this.parkingLotRepository.save(ticket.parkingLot),
     ]);
+
+    return {
+      pointTime: calculateDateDifferenceInMinutes(
+        ticket.entryTime,
+        ticket.exitTime,
+      ),
+      description: 'The parking slot has been successfully left',
+    };
   }
 
   // 04-get_status_of_parking_lot
@@ -153,9 +166,12 @@ export class ParkingLotService {
       .getRawMany();
 
     const availableCarSizes: CarSizeStatus = {};
-    carSizeSlots.forEach((item) => {
-      availableCarSizes[item.size] = Number(item.count);
-    });
+
+    if (Array.isArray(carSizeSlots)) {
+      carSizeSlots.forEach((item) => {
+        availableCarSizes[item.size] = Number(item.count);
+      });
+    }
 
     const totalSlots = await this.parkingLotRepository.count({
       where: { isAvailable: true },
