@@ -57,7 +57,7 @@ export class ParkingLotController {
   }
 
   // 06-get_allocated_slot_number_by_car_size
-  @Get('registration-allocated-lots')
+  @Get('registration-allocated-slot-number')
   async getAllocatedLotsByCarSize(@Query('carSize') carSize: CarSize) {
     return this.parkingLotService.getAllocatedLotsByCarSize(carSize);
   }
