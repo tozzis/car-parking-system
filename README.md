@@ -1,4 +1,4 @@
-# Parking Systems
+# Parking System
 
 The Parking System is a REST API that allows users to manage parking lots and park their cars. The Parking System is built using [Node.js](https://nodejs.org/), [NestJS](https://github.com/nestjs/nest), and TypeScript, and is backed by a PostgreSQL database.
 
@@ -21,7 +21,7 @@ The following environment variables need to be set to run the application:
 
 To run the application locally with default values, create a .env file at the root of the project with the following content:
 
-```
+```bash
 PORT=3000
 DATABASE_HOST=localhost
 DATABASE_PORT=5432
@@ -56,6 +56,16 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Docker Compose
+Access the application at http://localhost:3000.
+```bash
+# start the services
+$ docker-compose up
+
+# stop the services
+$ docker-compose down
+```
+
 ## Swagger API Documentation
 
 This project comes with Swagger UI, which is an interactive API documentation tool that allows you to explore.
@@ -80,11 +90,15 @@ To access the Swagger UI, follow these steps:
 |       ├── system              # This module manages system health checks
 |   ├── app.module.ts           # Main app module
 |   └── main.ts
-├── .editorconfig               # Editor configuration file
+├── Dockerfile                  # Docker image configuration
+├── docker-compose.yml          # Docker Compose configuration
+├── .dockerignore               # Folder and files ignored by docker
 ├── .gitignore                  # Folder and files ignored by git
+├── .editorconfig               # Editor configuration file
 ├── .nvmrc                      # Node Version Manager
 ├── .prettierrc                 # Role for prettierrc
 ├── package-lock.json           # Contains exact versions of NPM dependencies in package.json
 ├── package.json                # NPM dependencies
 ├── tsconfig.json               # Config settings for compiling server code written in TypeScript
+├── README.md                   # Project README
 ```
