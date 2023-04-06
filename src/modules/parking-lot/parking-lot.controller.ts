@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CarSize } from 'src/shared/constants/car-size.enum';
 import { CreateParkingLotDto } from './dto/create-parking-lot.dto';
 import { LeaveParkingDto } from './dto/leave-parking.dto';
@@ -6,6 +7,7 @@ import { ParkCarDto } from './dto/park-car.dto';
 import { UpdateParkingLotDto } from './dto/update-parking-lot.dto';
 import { ParkingLotService } from './parking-lot.service';
 
+@ApiTags('Parking Lot')
 @Controller('parking-lot')
 export class ParkingLotController {
   constructor(private readonly parkingLotService: ParkingLotService) {}
